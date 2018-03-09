@@ -19,19 +19,65 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         padding: 10px;
       }
+
+      input[type="text"] {
+        margin-left: 10px;
+      }
     </style>
 
     <div class="card">
-      <div class="circle">3</div>
-      <h1>View Three</h1>
-      <p>Modus commodo minimum eum te, vero utinam assueverit per eu.</p>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.Has at minim mucius aliquam, est id tempor laoreet.Pro saepe pertinax ei, ad pri animal labores suscipiantur.</p>
+      <zing-grid id="myGrid"></zing-grid>
+      <br>
+      
+      <input type="checkbox" checked="{{pagerOn::change}}">Pager
+      <input id="cInput" type="text" placeholder="Caption">
+      <button on-click="setCaption">Set Caption</button><br><br>
+      <textarea id="myTextarea" name="ds" cols="50" rows="8" value="{{datastore::input}}"></textarea><br>
+      <button on-click="setData">Set Data</button>
+      
     </div>
   </template>
 
   <script>
     class MyView3 extends Polymer.Element {
       static get is() { return 'my-view3'; }
+
+      static get properties() {
+        return {
+          datastore: {
+            type: String,
+            value: `[
+  { "breed": "Chow Chow", "name": "Butter"},
+  { "breed": "Dachshund", "name": "Sousage"},
+  { "breed": "Pug", "name": "Potat"},
+  { "breed": "Corgi", "name": "Plop"},
+  { "breed": "Pomeranian", "name": "Floof"}
+]`
+          },
+          pagerOn: {
+            type: Boolean,
+            value: false,
+            observer: '_pagerOnChanged'
+          }
+        }
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        this.$.myGrid.setData(JSON.parse(this.datastore));
+      }
+
+      setCaption() {
+        this.$.myGrid.setCaption(this.$.cInput.value);
+      }
+
+      _pagerOnChanged() {
+        this.$.myGrid.setPager(this.pagerOn);
+      }
+
+      setData() {
+        this.$.myGrid.setData(JSON.parse(this.$.myTextarea.value));
+      }
     }
 
     window.customElements.define(MyView3.is, MyView3);

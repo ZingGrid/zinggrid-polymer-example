@@ -24,23 +24,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <zing-grid
-      caption$="{{cText}}"
-      data$="{{datastore}}"
-      pager$="{{pagerOn}}"
-      editor
-    ></zing-grid>
-    <br>
-
-    <h3>Stored Data</h3>
-    <textarea name="ds" cols="50" rows="8" value="{{datastore::input}}"></textarea>
-    <br><br>
-
-    <input type="checkbox" checked="{{pagerOn::change}}">Pager
-
-    <button id="cdBtn" on-click="changeData">Change Data</button>
-    <input id="cInput" type="text" placeholder="Caption">
-    <button on-click="setCaption">Set Caption</button>
+    <div class="card">
+        <zing-grid
+        caption$="{{cText}}"
+        data$="{{datastore}}"
+        pager$="{{pagerOn}}"
+        editor
+      ></zing-grid>
+      <br>
+  
+      <h3>Stored Data</h3>
+      <textarea name="ds" cols="50" rows="8" value="{{datastore::input}}"></textarea>
+      <br><br>
+  
+      <input type="checkbox" checked="{{pagerOn::change}}">Pager
+  
+      <button id="cdBtn" on-click="changeData">Change Data</button>
+      <input id="cInput" type="text" placeholder="Caption">
+      <button on-click="setCaption">Set Caption</button>
+    </div>
 
   </template>
 
