@@ -1,0 +1,95 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-view4">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+
+      #eventLog {
+        background: black;
+        color: white;
+        width: 400px;
+        min-height: 225px;
+        padding: 10px;
+        margin-top: 20px;
+        font-family: monospace;
+        line-height: 1.5;
+      }
+
+      .wordwrap {
+        white-space: pre-wrap;
+        /* CSS3 */
+        white-space: -moz-pre-wrap;
+        /* Firefox */
+        white-space: -pre-wrap;
+        /* Opera <7 */
+        white-space: -o-pre-wrap;
+        /* Opera 7 */
+        word-wrap: break-word;
+        /* IE */
+      }
+    </style>
+
+    <div class="card">
+      <zing-grid id="eventGrid" caption="Events" data='[
+          {"name": "Kevin", "age": "22"},
+          {"name": "Joe", "age": "40"},
+          {"name": "Liz", "age": "25"},
+          {"name": "Tim", "age": "24"},
+          {"name": "Ron", "age": "30"},
+          {"name": "Jane", "age": "31"}
+        ]' pager page-size="3"></zing-grid><br>
+
+      <h3>Event Log</h3>
+      <div id="eventLog" class="wordwrap"></div>
+    </div>
+  </template>
+
+  <script>
+    class MyView4 extends Polymer.Element {
+      static get is() {
+        return 'my-view4';
+      }
+
+      static get properties() {
+        return {
+          eventText: {
+            value: '',
+            type: String
+          }
+        }
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        let grid = this.$.eventGrid;
+        let events = ['grid:ready', 'cell:click', 'header:click', 'grid:pagechange']
+        for (var i = 0; i < events.length; i++) {
+          grid.addEventListener(events[i], this.addEvent.bind(this));
+        }
+      }
+
+      addEvent(event) {
+        console.log(event);
+        if (event.detail.ZGTarget && event.detail.ZGData) {
+          this.eventText += `${event.type} from ${event.detail.ZGTarget.localName}<br>`;
+          this.eventText += `${JSON.stringify(event.detail.ZGData)}<br><br>`;
+        } else if (event.detail.ZGData) {
+          this.eventText += `${event.type} from zing-grid <br>`;
+          this.eventText += `${JSON.stringify(event.detail.ZGData)}<br><br>`;
+        } else {
+          console.log(event.type + ' from zing-grid');
+          this.eventText += `${event.type} from zing-grid <br><br>`;
+        }
+        this.$.eventLog.innerHTML = this.eventText;
+      }
+    }
+
+    window.customElements.define(MyView4.is, MyView4);
+  </script>
+</dom-module>

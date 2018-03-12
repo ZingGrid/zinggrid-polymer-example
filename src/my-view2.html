@@ -19,26 +19,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         padding: 10px;
       }
-      #cdBtn, input[type="text"] {
+
+      #cdBtn,
+      input[type="text"] {
         margin-left: 5px;
       }
     </style>
 
     <div class="card">
-        <zing-grid
-        caption$="{{cText}}"
-        data$="{{datastore}}"
-        pager$="{{pagerOn}}"
-        editor
-      ></zing-grid>
+      <zing-grid caption$="{{cText}}" data$="{{datastore}}" pager$="{{pagerOn}}" editor></zing-grid>
       <br>
-  
+
       <h3>Stored Data</h3>
       <textarea name="ds" cols="50" rows="8" value="{{datastore::input}}"></textarea>
       <br><br>
-  
+
       <input type="checkbox" checked="{{pagerOn::change}}">Pager
-  
+
       <button id="cdBtn" on-click="changeData">Change Data</button>
       <input id="cInput" type="text" placeholder="Caption">
       <button on-click="setCaption">Set Caption</button>
@@ -48,7 +45,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script>
     class MyView2 extends Polymer.Element {
-      static get is() { return 'my-view2'; }
+      static get is() {
+        return 'my-view2';
+      }
       static get properties() {
         return {
           datastore: {
@@ -71,7 +70,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       changeData() {
         if (this.selected == 0) {
-          this.datastore = `[
+          this.datastore =
+            `[
   { "breed": "Chow Chow", "name": "Butter"},
   { "breed": "Dachshund", "name": "Sousage"},
   { "breed": "Pug", "name": "Potat"},
@@ -79,9 +79,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   { "breed": "Pomeranian", "name": "Floof"}
 ]`
           this.selected = 1;
-        }
-
-        else if (this.selected == 1) {
+        } else if (this.selected == 1) {
           this.datastore = '[[1,2,3], [4,5,6]]';
           this.selected = 0;
         }
