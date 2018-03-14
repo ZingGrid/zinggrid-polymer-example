@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="my-view3">
+<dom-module id="grid-methods">
   <template>
     <style include="shared-styles">
       :host {
@@ -39,8 +39,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-    class MyView3 extends Polymer.Element {
-      static get is() { return 'my-view3'; }
+    class GridMethods extends Polymer.Element {
+      static get is() { return 'grid-methods'; }
 
       static get properties() {
         return {
@@ -80,6 +80,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     }
 
-    window.customElements.define(MyView3.is, MyView3);
+    window.customElements.define(GridMethods.is, GridMethods);
   </script>
 </dom-module>

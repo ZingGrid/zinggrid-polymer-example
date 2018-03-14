@@ -1,7 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="my-view5">
+<dom-module id="ajax-ex">
   <template>
     <style include="shared-styles">
       :host {
@@ -17,9 +17,9 @@
   </template>
 
   <script>
-    class MyView5 extends Polymer.Element {
+    class AjaxEx extends Polymer.Element {
       static get is() {
-        return 'my-view5';
+        return 'ajax-ex';
       }
 
       static get properties() {
@@ -46,6 +46,6 @@
         }
     }
 
-    window.customElements.define(MyView5.is, MyView5);
+    window.customElements.define(AjaxEx.is, AjaxEx);
   </script>
 </dom-module>

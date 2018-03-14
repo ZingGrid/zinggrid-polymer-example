@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="my-view2">
+<dom-module id="data-change">
   <template>
     <style include="shared-styles">
       :host {
@@ -44,9 +44,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-    class MyView2 extends Polymer.Element {
+    class DataChange extends Polymer.Element {
       static get is() {
-        return 'my-view2';
+        return 'data-change';
       }
       static get properties() {
         return {
@@ -90,6 +90,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     }
 
-    window.customElements.define(MyView2.is, MyView2);
+    window.customElements.define(DataChange.is, DataChange);
   </script>
 </dom-module>

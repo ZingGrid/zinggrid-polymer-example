@@ -1,7 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="my-view4">
+<dom-module id="grid-events">
   <template>
     <style include="shared-styles">
       :host {
@@ -51,9 +51,9 @@
   </template>
 
   <script>
-    class MyView4 extends Polymer.Element {
+    class GridEvents extends Polymer.Element {
       static get is() {
-        return 'my-view4';
+        return 'grid-events';
       }
 
       static get properties() {
@@ -90,6 +90,6 @@
       }
     }
 
-    window.customElements.define(MyView4.is, MyView4);
+    window.customElements.define(GridEvents.is, GridEvents);
   </script>
 </dom-module>
