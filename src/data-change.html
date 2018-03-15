@@ -1,0 +1,95 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="data-change">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+
+      #cdBtn,
+      input[type="text"] {
+        margin-left: 5px;
+      }
+    </style>
+
+    <div class="card">
+      <zing-grid caption$="{{cText}}" data$="{{datastore}}" pager$="{{pagerOn}}" editor></zing-grid>
+      <br>
+
+      <h3>Stored Data</h3>
+      <textarea name="ds" cols="50" rows="8" value="{{datastore::input}}"></textarea>
+      <br><br>
+
+      <input type="checkbox" checked="{{pagerOn::change}}">Pager
+
+      <button id="cdBtn" on-click="changeData">Change Data</button>
+      <input id="cInput" type="text" placeholder="Caption">
+      <button on-click="setCaption">Set Caption</button>
+    </div>
+
+  </template>
+
+  <script>
+    class DataChange extends Polymer.Element {
+      static get is() {
+        return 'data-change';
+      }
+      static get properties() {
+        return {
+          datastore: {
+            type: String,
+            value: '[[1,2,3], [4,5,6]]'
+          },
+          selected: {
+            type: Number,
+            value: 0
+          },
+          cText: {
+            type: String
+          },
+          pagerOn: {
+            type: Boolean,
+            value: false
+          }
+        }
+      }
+
+      changeData() {
+        if (this.selected == 0) {
+          this.datastore =
+            `[
+  { "breed": "Chow Chow", "name": "Butter"},
+  { "breed": "Dachshund", "name": "Sousage"},
+  { "breed": "Pug", "name": "Potat"},
+  { "breed": "Corgi", "name": "Plop"},
+  { "breed": "Pomeranian", "name": "Floof"}
+]`
+          this.selected = 1;
+        } else if (this.selected == 1) {
+          this.datastore = '[[1,2,3], [4,5,6]]';
+          this.selected = 0;
+        }
+      }
+
+      setCaption() {
+        this.cText = this.$.cInput.value
+      }
+    }
+
+    window.customElements.define(DataChange.is, DataChange);
+  </script>
+</dom-module>
